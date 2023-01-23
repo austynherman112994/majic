@@ -5,7 +5,7 @@
 import pytest
 
 
-from majic import majic
+from majic import worker
 
 
 @pytest.fixture
