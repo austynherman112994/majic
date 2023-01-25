@@ -11,6 +11,27 @@ import flask
 
 from majic import templates
 
+
+
+
+class Workers:
+    def __init__(self, default_tasks=True, default_sensors=True):
+        self.app = flask.Flask(__name__)
+        self.task_blueprint = Blueprint('task_blueprint', __name__)
+        self.sensor_blueprint = Blueprint('sensor_blueprint', __name__)
+        self.app.register_blueprint(blueprint)
+
+
+    def add_task(self, task):
+        pass
+
+    def add_sensor(self, sensor):
+        pass
+
+    def start_workers(self):
+
+
+
 app = flask.Flask(__name__)
 
 # Register route blueprints

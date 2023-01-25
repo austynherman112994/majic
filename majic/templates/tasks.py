@@ -1,16 +1,27 @@
 import functools
-from flask import Blueprint
+from flask import Blueprint, request, jsonify
 
 task_blueprint = Blueprint('task_blueprint', __name__)
 
 
-def task(task_id):
-    def task_wrapper(func):
-        @functools.wraps(func)
-        @task_blueprint.route(f'/tasks/{task_id}', methods=['GET'])
-        def task_response(*args, **kwargs):
-            data = func(*args, **kwargs)
-            return 200, {'message': '', 'status': "SUCCESS", 'job_data': data}
+class Task:
+    def __init__(self, function, task_id):
+        self.task_id = task_id
+        self.connector = connector
+        self.function = function
 
-        return task_response
-    return task_wrapper
+    def task_submit(self):
+        parameters = request.get_json()
+        result = self.function(**parameters)
+        return result, 200
+
+    def task_status(self):
+        pass
+
+def task(task_id, connector=None):
+    """ Decorator for the class Task
+
+    """
+    def _task(function):
+        return Task(function, task_id, connector)
+    return _task
