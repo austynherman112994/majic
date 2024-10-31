@@ -10,7 +10,7 @@ class DbEngine:
     def instance(cls):
         if not cls._engine:
             cls._engine = create_engine(
-                "postgresql+psycopg2://postgres:password@172.17.0.2/majic",
+                "postgresql+psycopg2://postgres:password@172.17.0.2/sunstrike",
                 isolation_level="SERIALIZABLE",
             )
         return cls._engine

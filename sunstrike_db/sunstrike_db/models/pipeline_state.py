@@ -21,6 +21,15 @@ class PipelineState(BaseModel):
     tasks = relationship("Task", secondary="pipeline_state_task", back_populates="pipeline_states")
     edges = relationship("Edge", secondary="pipeline_state_edge", back_populates="pipeline_states")
 
+    def to_dict(self):
+        base_dict = {
+            'id': self.id,
+            'version': self.version,
+            'status': self.status.name,
+            'pipeline_id': self.pipeline_id
+        }
+        return base_dict
+
 
     def __repr__(self) -> str:
         return f"""PipelineState(

@@ -1,9 +1,10 @@
+from sys import pycache_prefix
+
 from sqlalchemy import select, func, text
 from sqlalchemy.orm import Session
 from sqlalchemy.dialects.postgresql import array_agg, ARRAY
 
 from sunstrike_db.controllers.controller import BaseController
-from sunstrike_db.controllers.task import TaskController
 from sunstrike_db.models.data_types.status import PipelineStatus
 from sunstrike_db.models.data_types.status import PipelineStateStatus
 from sunstrike_db.models.pipeline import Pipeline
@@ -50,7 +51,7 @@ class PipelineController(BaseController):
                 edges.append(edge)
 
             pipeline_state = PipelineState(
-                version=0,
+                version="v0.0.1",
                 status=state_status,
                 tasks=tasks,
                 edges=edges
@@ -68,7 +69,7 @@ class PipelineController(BaseController):
     @classmethod
     def _get_by_id(cls, session: Session, primary_id):
         query = select(Pipeline).where(Pipeline.id == primary_id)
-        return session.execute(query).one()
+        return session.execute(query).one()[0]
 
     def get_by_id(self, primary_id):
         with Session(self.engine) as session:
@@ -84,12 +85,15 @@ class PipelineController(BaseController):
 
             pipeline = self._get_by_id(session, primary_id)
             pipeline_states = self.get_pipeline_states(session, primary_id)
-            pipeline.pipeline_states = pipeline_states
-            return pipeline
+            print(pipeline_states)
+            pipeline_dict = pipeline.to_dict()
+            pipeline_states_dict = [state[0].to_dict() for state in pipeline_states]
+            pipeline_dict['pipeline_states'] = pipeline_states_dict
+            return pipeline_dict
 
     def read_all(self):
         with Session(self.engine) as session:
-            return session.query(Pipeline).all()
+            return [pipeline.to_dict() for pipeline in session.query(Pipeline).all()]
 
     def update(self, primary_id, name, status):
         with Session(self.engine) as session:
