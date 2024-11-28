@@ -1,11 +1,8 @@
-from src.sunstrike_python.config import SunstrikeConfig
-
-
 class BaseEventConsumer:
     def __init__(self):
         pass
 
-    def fetch(self, key):
+    def fetch(self):
         raise NotImplemented("Event consumer fetch must be overridden")
 
     def ack(self, msg):
@@ -13,3 +10,6 @@ class BaseEventConsumer:
 
     def negative_ack(self, msg):
         raise NotImplemented("Event consumer negative ack must be overridden")
+
+    def close(self, msg):
+        raise NotImplemented("Event consumer close must be overridden")

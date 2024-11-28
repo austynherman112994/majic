@@ -1,10 +1,16 @@
-from src.sunstrike_python.cache.base_cache import BaseCache
+from sunstrike_python.cache.base_cache import BaseCache
 
 
 class DummyCache(BaseCache):
     __cache = {}
     def __init__(self):
         super().__init__()
+
+    def get_runner_state(self, key):
+        raise NotImplemented("Cache get_str must be overridden")
+
+    def set_runner_state(self, key):
+        raise NotImplemented("Cache get_obj must be overridden")
 
     def get_str(self, key):
         return DummyCache.__cache[key]
