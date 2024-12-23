@@ -32,12 +32,13 @@ def publish_message(topic, message):
 # Example usage
 topic_name = "test-upstream-0001"
 message_to_publish = json.dumps({
-    'data': {
-        'arg_1': 'rg_1',
-        'arg_2': 'rg_2',
-        'kwarg_val_1': 'k1',
-        'kwarg_val_2': 'k2'
-    }
+    'arg_1_nested': {
+        'arg_1': 'a',
+        'arg_2': [1,2,3,4,5,6]
+    },
+    'arg_2': 'rg_2',
+    'kwarg_val_1': 'k1',
+    'kwarg_val_2': 'k2'
 })
 
 publish_message(topic_name, message_to_publish)

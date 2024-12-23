@@ -1,6 +1,20 @@
+import json
 import jinja2
 
 from sunstrike_component.config import SunstrikeConfig
+
+class TemplateInterface:
+    def __init__(self, msg):
+        self.msg = msg
+        self.msg_data = self.msg_data
+
+    @classmethod
+    def msg_data(cls, msg):
+        return json.loads(msg.data())
+
+    def db(self):
+        pass
+        # TODO
 
 
 class TemplateEngine:

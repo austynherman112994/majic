@@ -9,6 +9,6 @@ export SUNSTRIKE_PULSAR_HOST=pulsar://10.107.141.190:6650
 export SUNSTRIKE_CACHE_TYPE="REDIS"
 export SUNSTRIKE_REDIS_PORT="6379"
 export SUNSTRIKE_REDIS_HOST="localhost"
-export SUNSTRIKE_FUNCTION_TEMPLATE='{"args": ["{{sunstrike_msg.data.arg_1}}", "{{sunstrike_msg.data.arg_2}}"], "kwargs": {"kwarg_1_key": "{{sunstrike_msg.data.kwarg_val_1}}", "kwarg_2_key": "{{sunstrike_msg.data.kwarg_val_2}}"}}'
+export SUNSTRIKE_FUNCTION_TEMPLATE='{"args": ["{{sunstrike_input.arg_1_nested.arg_2[0]}}", "{{sunstrike_input.arg_2}}"], "kwargs": {"kwarg_1_key": "{{sunstrike_input.kwarg_val_1}}", "kwarg_2_key": "{{sunstrike_input.kwarg_val_2}}"}}'
 export SUNSTRIKE_FUNCTION_TIMEOUT=90
 export SUNSTRIKE_RUNNER_ID=test-print-app-0001
