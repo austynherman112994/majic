@@ -1,0 +1,14 @@
+export SUNSTRIKE_COMPONENT_CONCURRENCY=1
+export SUNSTRIKE_COMPONENT_MULTIPROCESSING_TYPE='NONE'
+export SUNSTRIKE_EVENT_CONSUMER_TYPE="PULSAR"
+export SUNSTRIKE_EVENT_PRODUCER_TYPE="PULSAR"
+export SUNSTRIKE_INPUT_TOPICS="test-upstream-0001"
+export SUNSTRIKE_OUTPUT_TOPIC="test-downstream-0001"
+export SUNSTRIKE_SUBSCRIBER="test-print-app"
+export SUNSTRIKE_PULSAR_HOST=pulsar://10.107.141.190:6650
+export SUNSTRIKE_CACHE_TYPE="REDIS"
+export SUNSTRIKE_REDIS_PORT="6379"
+export SUNSTRIKE_REDIS_HOST="localhost"
+export SUNSTRIKE_FUNCTION_TEMPLATE='{"args": ["{{sunstrike_msg.data.arg_1}}", "{{sunstrike_msg.data.arg_2}}"], "kwargs": {"kwarg_1_key": "{{sunstrike_msg.data.kwarg_val_1}}", "kwarg_2_key": "{{sunstrike_msg.data.kwarg_val_2}}"}}'
+export SUNSTRIKE_FUNCTION_TIMEOUT=90
+export SUNSTRIKE_RUNNER_ID=test-print-app-0001

@@ -16,5 +16,5 @@ resource "helm_release" "pulsar" {
 
   repository = "https://pulsar.apache.org/charts"
   chart      = "pulsar"
-  values     = [file("../../helm/pulsar/values-minikube.yaml")]
+  values     = [file("../../helm/pulsar/local.yaml")]
 }
